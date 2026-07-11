@@ -12,27 +12,27 @@ class BlueteamAutopilot < Formula
 
   resource "connectonion" do
     url "https://files.pythonhosted.org/packages/source/c/connectonion/connectonion-1.1.0.tar.gz"
-    sha256 "a21803d79a9cfd944970158ba9a509ca34f983f02c8777d2e61ddae1c09b7a3e"
+    sha256 "5c42be1527feddbf8d5a4ec3e779a036095e039ac40b14b70bc2840d127406ab"
   end
 
   resource "mcp" do
     url "https://files.pythonhosted.org/packages/source/m/mcp/mcp-1.28.1.tar.gz"
-    sha256 "2726bca5e7193f61c5dde8b12500a6de2d9acf6d1a1c0be9e8c2e706437991df"
+    sha256 "d51e36a5f5644faea4f85ea649bfffa6bc6c26770d42798ad6a3de3d2ba69683"
   end
 
   resource "python-dotenv" do
-    url "https://files.pythonhosted.org/packages/source/p/python-dotenv/python-dotenv-1.2.2.tar.gz"
-    sha256 "1d8214789a24de455a8b8bd8ae6fe3c6b69a5e3d64aa8a8e5d68e694bbcb285a"
+    url "https://files.pythonhosted.org/packages/82/ed/0301aeeac3e5353ef3d94b6ec08bbcabd04a72018415dcb29e588514bba8/python_dotenv-1.2.2.tar.gz"
+    sha256 "2c371a91fbd7ba082c2c1dc1f8bf89ca22564a087c2c287cd9b662adde799cf3"
   end
 
   resource "libsql" do
     url "https://files.pythonhosted.org/packages/source/l/libsql/libsql-0.1.11.tar.gz"
-    sha256 "c8c00c5e4d0906ff682ab3cad8473ef36aaa34080bcc553a2e636a73e79d9c2b"
+    sha256 "101b6e60f5333434b3e6107bfe2cf24cd5d1317286ad262cb6489941abde77d4"
   end
 
   resource "pyyaml" do
     url "https://files.pythonhosted.org/packages/source/P/PyYAML/pyyaml-6.0.3.tar.gz"
-    sha256 "fc09d0aa354569bc501d4e787133afc08552722d3ab34836a80547331bb5d4a0"
+    sha256 "d76623373421df22fb4cf8817020cbb7ef15c725b9d5e45f17e189bfc384190f"
   end
 
   def install
