@@ -54,6 +54,9 @@ class BlueteamAutopilot < Formula
       end
     end
 
+    # Install the main package (creates the blueteam entry point)
+    system "#{libexec}/bin/python", "-m", "pip", "install", "."
+
     # Link the blueteam entry point
     bin.install_symlink libexec/"bin/blueteam" => "blueteam"
   end
