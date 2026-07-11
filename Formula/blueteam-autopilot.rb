@@ -45,11 +45,11 @@ class BlueteamAutopilot < Formula
         if r.name == "libsql"
           # Allow pre-built wheels for libsql (has Rust extensions)
           system "#{libexec}/bin/python", "-m", "pip", "install", 
-                 "--no-deps", "--no-build-isolation", "--only-binary", "libsql", "."
+                 "--no-deps", "--only-binary", "libsql", "."
         else
-          # Build pure Python packages from source
+          # Use build isolation for packages that need it (e.g., mcp requires hatchling)
           system "#{libexec}/bin/python", "-m", "pip", "install", 
-                 "--no-deps", "--no-build-isolation", "."
+                 "--no-deps", "."
         end
       end
     end
