@@ -41,13 +41,13 @@ class BlueteamAutopilot < Formula
     
     # Install resources in order, allowing binary wheels for libsql (Rust package)
     resources.each do |r|
-      r.stage do
-        if r.name == "libsql"
-          # Allow pre-built wheels for libsql (has Rust extensions)
-          system "#{libexec}/bin/python", "-m", "pip", "install", 
-                 "--no-deps", "--only-binary", "libsql", "."
-        else
-          # Use build isolation for packages that need it (e.g., mcp requires hatchling)
+      if r.name == "libsql"
+        # Install libsql from PyPI to use pre-built wheels (has Rust extensions)
+        system "#{libexec}/bin/python", "-m", "pip", "install", 
+               "--no-deps", "--only-binary", "libsql", "libsql==0.1.11"
+      else
+        # Use build isolation for packages that need it (e.g., mcp requires hatchling)
+        r.stage do
           system "#{libexec}/bin/python", "-m", "pip", "install", 
                  "--no-deps", "."
         end
