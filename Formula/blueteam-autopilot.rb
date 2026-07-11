@@ -3,8 +3,8 @@ class BlueteamAutopilot < Formula
 
   desc "SecOps agent powered by Qwen Cloud + ConnectOnion for multi-cloud security operations"
   homepage "https://github.com/cdavis-code/blueteam-autopilot"
-  url "https://github.com/cdavis-code/blueteam-autopilot/archive/refs/tags/v3.1.1.tar.gz"
-  sha256 "d8b246e8d8ae5a934c0e9f52dde86b8a9c7b0b372829344b48c3cc946e5368de"
+  url "https://github.com/cdavis-code/blueteam-autopilot/archive/refs/tags/v3.1.0.tar.gz"
+  sha256 ""  # Fill after creating GitHub release: curl -sL <url> | shasum -a 256
   license "MIT"
 
   depends_on "python@3.10"
@@ -36,7 +36,23 @@ class BlueteamAutopilot < Formula
   end
 
   def install
-    virtualenv_install_with_resources
+    # Use virtualenv_install_with_resources but allow binary wheels for native packages
+    venv = virtualenv_create(libexec, "python3.10")
+    
+    # Install resources in order, allowing binary wheels for libsql (Rust package)
+    resources.each do |r|
+      r.stage do
+        if r.name == "libsql"
+          # Allow pre-built wheels for libsql (has Rust extensions)
+          system "#{libexec}/bin/python", "-m", "pip", "install", 
+                 "--no-deps", "--no-build-isolation", "--only-binary", "libsql", "."
+        else
+          # Build pure Python packages from source
+          system "#{libexec}/bin/python", "-m", "pip", "install", 
+                 "--no-deps", "--no-build-isolation", "."
+        end
+      end
+    end
 
     # Link the blueteam entry point
     bin.install_symlink libexec/"bin/blueteam" => "blueteam"
